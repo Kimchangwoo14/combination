@@ -35,6 +35,8 @@
                     }
                 }
             }
+             result = result.Distinct().ToList();
+             
             return result.ToArray();
 
         }
