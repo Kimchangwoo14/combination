@@ -5,15 +5,12 @@
 
 
 
-
-
-
--
+- 소수
 
 
 
 
- static int isPrime(int n)
+        static int isPrime(int n)
         {
             if (n <= 1)
                 return 0;
@@ -37,11 +34,11 @@
 
 
 
--
+- 조합
 
 
 
-public static void RunTest()
+         public static void RunTest()
         {
             StringBuilder sb = new StringBuilder();
             StringCombination("ABC", sb, 0);
