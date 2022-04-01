@@ -89,16 +89,22 @@
     
     
     ---------------------------------------------------------------------------------------------------------------------------------------------
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 public class Combination
 {
     readonly int _count;
@@ -108,7 +114,6 @@ public class Combination
     int[] _caseIndex;
 
     int _effectiveCount;
-
     public Combination(int [] elems)
     {
         _sourceList = elems;
@@ -140,7 +145,6 @@ public class Combination
                     _effectiveCount++;
                 }
             }
-
             yield return _caseIndex;
         }
     }
