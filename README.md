@@ -96,11 +96,13 @@
     
     
     
-    public class Combination
+    
+    
+    
+public class Combination
 {
     readonly int _count;
     readonly int _numberOfAll;
-
     readonly int[] _sourceList;
     readonly int[] _emptyIndex;
     int[] _caseIndex;
