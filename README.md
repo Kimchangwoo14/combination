@@ -9,6 +9,10 @@
 
 
 -
+
+
+
+
  static int isPrime(int n)
         {
             if (n <= 1)
@@ -34,6 +38,9 @@
 
 
 -
+
+
+
 public static void RunTest()
         {
             StringBuilder sb = new StringBuilder();
