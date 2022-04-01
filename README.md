@@ -1,5 +1,5 @@
 # combination
-조합 / 소수 체크 함수 예제
+조합(순서 보장) / 소수 체크 함수 예제 , 조합(모든 경우)
 
 
 
@@ -84,3 +84,68 @@
             return 1;
         }
     }
+    
+    
+    
+    
+    ---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    public class Combination
+{
+    readonly int _count;
+    readonly int _numberOfAll;
+
+    readonly int[] _sourceList;
+    readonly int[] _emptyIndex;
+    int[] _caseIndex;
+
+    int _effectiveCount;
+
+    public Combination(int [] elems)
+    {
+        _sourceList = elems;
+        _count = _sourceList.Length;
+        _numberOfAll = (1 << _count);
+
+        _emptyIndex = new int[_count];
+        for (int i = 0; i < _count; i ++)
+        {
+            _emptyIndex[i] = -1;
+        }
+
+        _caseIndex = new int[_count];
+    }
+
+    public IEnumerable<int []> Successor()
+    {
+        for (int i = 0; i < _numberOfAll; i ++)
+        {
+            _effectiveCount = 0;
+            Array.Copy(_emptyIndex, _caseIndex, _count);
+
+            for (int c = 0; c < _count; c++)
+            {
+                int mask = (1 << c); // 이 코드의 간단한 핵심.
+                if ((i & mask) == mask)
+                {
+                    _caseIndex[_effectiveCount] = c;
+                    _effectiveCount++;
+                }
+            }
+
+            yield return _caseIndex;
+        }
+    }
+
+    public int [] Apply()
+    {
+        int[] combinations = new int[_effectiveCount];
+
+        for (int i = 0; i < _effectiveCount; i ++)
+        {
+            combinations[i] = _sourceList[_caseIndex[i]];
+        }
+
+        return combinations;
+    }
+}
