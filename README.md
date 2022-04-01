@@ -105,59 +105,26 @@
 
 
 
-public class Combination
-{
-    readonly int _count;
-    readonly int _numberOfAll;
-    readonly int[] _sourceList;
-    readonly int[] _emptyIndex;
-    int[] _caseIndex;
-
-    int _effectiveCount;
-    public Combination(int [] elems)
-    {
-        _sourceList = elems;
-        _count = _sourceList.Length;
-        _numberOfAll = (1 << _count);
-
-        _emptyIndex = new int[_count];
-        for (int i = 0; i < _count; i ++)
+public static void RunTest()
         {
-            _emptyIndex[i] = -1;
+            StringBuilder sb = new StringBuilder();
+            StringCombination("ABC", sb, 0);
         }
 
-        _caseIndex = new int[_count];
-    }
-
-    public IEnumerable<int []> Successor()
-    {
-        for (int i = 0; i < _numberOfAll; i ++)
+        static void StringCombination(string s, StringBuilder sb, int index)
         {
-            _effectiveCount = 0;
-            Array.Copy(_emptyIndex, _caseIndex, _count);
-
-            for (int c = 0; c < _count; c++)
+            for (int i = index; i < s.Length; i++)
             {
-                int mask = (1 << c); // 이 코드의 간단한 핵심.
-                if ((i & mask) == mask)
-                {
-                    _caseIndex[_effectiveCount] = c;
-                    _effectiveCount++;
-                }
+                // 1) 한 문자 추가
+                sb.Append(s[i]);
+
+                // 2) 구한 문자조합 출력
+                Console.WriteLine(sb.ToString());
+
+                // 3) 나머지 문자들에 대한 조합 구하기
+                StringCombination(s, sb, i + 1);
+
+                // 위의 1에서 추가한 문자 삭제 
+                sb.Remove(sb.Length - 1, 1);
             }
-            yield return _caseIndex;
         }
-    }
-
-    public int [] Apply()
-    {
-        int[] combinations = new int[_effectiveCount];
-
-        for (int i = 0; i < _effectiveCount; i ++)
-        {
-            combinations[i] = _sourceList[_caseIndex[i]];
-        }
-
-        return combinations;
-    }
-}
