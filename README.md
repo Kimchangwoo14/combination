@@ -1,5 +1,21 @@
 # combination
 조합 / 소수 체크 함수 예제
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public class Solution123
     {
         static string[] combination(string s)
